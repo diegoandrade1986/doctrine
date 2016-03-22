@@ -29,12 +29,12 @@ class Cliente
     private $id;
     /**
      * tipo da coluna + tamanho
-     * @ORM\Column(type="string", lenght=255)
+     * @ORM\Column(type="string", length=255)
      */
     private $nome;
     /**
      * tipo da coluna + tamanho
-     * @ORM\Column(type="string", lenght=255)
+     * @ORM\Column(type="string", length=255)
      */
     private $email;
 
