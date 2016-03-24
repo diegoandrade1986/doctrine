@@ -16,9 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 //Use no $em que é passando o entityManager do doctrine
 $app['clienteService'] = function () use ($em){
-    $clienteEntity = new Cliente();
-    $clienteMapper = new ClienteMapper($em);
-    $clienteService = new ClienteService($clienteEntity,$clienteMapper);
+    $clienteService = new ClienteService($em);
     return $clienteService;
 };
 
@@ -34,13 +32,15 @@ DELETE /apli/clientes/3 - Deleta um cliente passando o id como parametro
 /*Listando todos os clientes*/
 $app->get("/api/clientes",function() use ($app) {
     $dados = $app['clienteService']->fetchAll();
-    return $app->json($dados);
+    //return $app->json($dados);
+    return $dados;
 });
 
 /*Listando todos os clientes*/
 $app->get("/api/clientes/{id}",function($id) use ($app) {
     $dados = $app['clienteService']->find($id);
-    return $app->json($dados);
+    //return $app->json($dados);
+    return $dados;
 });
 
 /*Inserido um cliente com o post */
@@ -49,8 +49,8 @@ $app->post("/api/clientes",function(Request $request) use ($app) {
     $dados['nome'] = $request->get('nome');
     $dados['email'] = $request->get('email');
     $result = $app['clienteService']->insert($dados);
-
-    return $app->json($result);
+    //return $app->json($result);
+    return $result;
 });
 
 /*Alterando um cliente com o put */
@@ -59,13 +59,14 @@ $app->put("/api/clientes/{id}",function($id, Request $request) use ($app) {
     $data['nome'] = $request->request->get('nome');
     $data['email'] = $request->request->get('email');
     $result = $app['clienteService']->update($id,$data);
-
-    return $app->json($result);
+    //return $app->json($result);
+    return $result;
 });
 /*Deletando um cliente com o delete */
 $app->delete("/api/clientes/{id}",function($id) use ($app) {
     $dados = $app['clienteService']->delete($id);
-    return $app->json($dados);
+    //return $app->json($dados);
+    return $dados;
 });
 
 /*aplicaçao do silex rodar*/
