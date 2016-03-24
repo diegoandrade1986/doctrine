@@ -53,8 +53,13 @@ class ClienteMapper
         ];
 
     }
-    public function delete($id)
+    public function delete(Cliente $cliente)
     {
+
+        $cliente = $this->em->getReference('Sistema\Entity\Cliente', $cliente->getId());
+        exit("pau");
+        $this->em->remove($cliente);
+        $this->em->flush();
         return [
             'sucess'=> true
         ];
