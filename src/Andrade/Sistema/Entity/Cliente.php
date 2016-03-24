@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 //Trabalhando com as anotations do doctrine
 //Criado a entidade(tabela) para o doctrine
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Andrade\Sistema\Entity\ClienteRepository")
  * @ORM\Table(name="clientes")
  */
 //------------------------------------------
@@ -46,7 +46,7 @@ class Cliente
         $this->id = $id;
     }
 
-    
+
     /**
      * @return mixed
      */
